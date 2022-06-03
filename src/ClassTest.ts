@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import supertest from 'supertest';
 
 @Injectable()
 export class Class3 {
@@ -8,11 +9,12 @@ export class Class3 {
 }
 
 @Injectable()
-export class Class2 {
-  constructor(public class3: Class3) {}
-}
+export class Class2 extends Class3 {}
 
 @Injectable()
-export class Class1 {
-  constructor(public class2: Class2) {}
+export class Class1 extends Class2 {
+  constructor() {
+    super();
+    this.hello();
+  }
 }
